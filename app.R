@@ -1,5 +1,6 @@
 if(!require(ggplot2)) install.packages( "ggplot2", repos = "http://cran.us.r-project.org")
 if(!require(dplyr)) install.packages( "dplyr", repos = "http://cran.us.r-project.org")
+if(!require(extrafont)) install.packages( "extrafont", repos = "http://cran.us.r-project.org")
 if(!require(tidyr)) install.packages( "tidyr", repos = "http://cran.us.r-project.org")
 if(!require(readr)) install.packages( "readr", repos = "http://cran.us.r-project.org")
 if(!require(purrr)) install.packages( "purrr", repos = "http://cran.us.r-project.org")
