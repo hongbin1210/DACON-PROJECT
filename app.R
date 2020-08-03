@@ -1191,7 +1191,167 @@ card<-cbind(card,V2)
             
             vars <- jhu_cases$country #웹사이트에 사용자가 나라를 선택할 수 있도록 선택박스를 만들기위해 vars에 저장해줌
             
-            
+            # You can access the value of the widget with input$text, e.g.
+word_cloud_function <- function(x){
+    urlStr <- "https://openapi.naver.com/v1/search/blog.xml?"
+    df <- x
+    str(df)
+    searchString <- paste0("query=",df)
+    searchString <- iconv(searchString, to="UTF-8")
+    searchString <- URLencode(searchString)
+    etcString1 <- "&display=100&start=1&sort=date"
+    etcString2 <- "&display=100&start=200&sort=date"
+    etcString3 <- "&display=100&start=300&sort=date"
+    etcString4 <- "&display=100&start=400&sort=date"
+    etcString5 <- "&display=100&start=500&sort=date"
+    etcString6 <- "&display=100&start=600&sort=date"
+    etcString7 <- "&display=100&start=700&sort=date"
+    etcString8 <- "&display=100&start=800&sort=date"
+    etcString9 <- "&display=100&start=900&sort=date"
+    etcString10 <- "&display=100&start=1000&sort=date"
+    
+    reqUrl1 <- paste(urlStr, searchString, etcString1, sep="")
+    reqUrl2 <- paste(urlStr, searchString, etcString2, sep="")
+    reqUrl3 <- paste(urlStr, searchString, etcString3, sep="")
+    reqUrl4 <- paste(urlStr, searchString, etcString4, sep="")
+    reqUrl5 <- paste(urlStr, searchString, etcString5, sep="")
+    reqUrl6 <- paste(urlStr, searchString, etcString6, sep="")
+    reqUrl7 <- paste(urlStr, searchString, etcString7, sep="")
+    reqUrl8 <- paste(urlStr, searchString, etcString8, sep="")
+    reqUrl9 <- paste(urlStr, searchString, etcString9, sep="")
+    reqUrl10 <- paste(urlStr, searchString, etcString10, sep="")
+    library(httr)
+    clientId = "3sWvfERUuYwaFgrb8tCs"
+    clientSecret = "QP_KJ8juH0"
+    Result1 <- GET(reqUrl1, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result2 <- GET(reqUrl2, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result3 <- GET(reqUrl3, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result4 <- GET(reqUrl4, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result5 <- GET(reqUrl5, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result6 <- GET(reqUrl6, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result7 <- GET(reqUrl7, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result8 <- GET(reqUrl8, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result9 <- GET(reqUrl9, add_headers("X-Naver-Client-Id"=clientId,
+                                        "X-Naver-Client-Secret"=clientSecret))
+    Result10 <- GET(reqUrl10, add_headers("X-Naver-Client-Id"=clientId,
+                                          "X-Naver-Client-Secret"=clientSecret))
+    apiResult1<-rawToChar(Result1$content)
+    apiResult2<-rawToChar(Result2$content)
+    apiResult3<-rawToChar(Result3$content)
+    apiResult4<-rawToChar(Result4$content)
+    apiResult5<-rawToChar(Result5$content)
+    apiResult6<-rawToChar(Result6$content)
+    apiResult7<-rawToChar(Result7$content)
+    apiResult8<-rawToChar(Result8$content)
+    apiResult9<-rawToChar(Result9$content)
+    apiResult10<-rawToChar(Result10$content)
+    Encoding(apiResult1) <- "UTF-8"
+    Encoding(apiResult2) <- "UTF-8"
+    Encoding(apiResult3) <- "UTF-8"
+    Encoding(apiResult4) <- "UTF-8"
+    Encoding(apiResult5) <- "UTF-8"
+    Encoding(apiResult6) <- "UTF-8"
+    Encoding(apiResult7) <- "UTF-8"
+    Encoding(apiResult8) <- "UTF-8"
+    Encoding(apiResult9) <- "UTF-8"
+    Encoding(apiResult10) <- "UTF-8"
+    #head(apiResult1)
+    refinedStr1 <- apiResult1
+    refinedStr1 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr1)
+    refinedStr1 <- gsub("[[:punct:]]"," ", refinedStr1)
+    refinedStr1 <- gsub("[a-z]"," ",refinedStr1)
+    refinedStr1 <- gsub("[0-9]", " ", refinedStr1)
+    refinedStr1 <- gsub(" +", " ",refinedStr1)
+    refinedStr2 <- apiResult2
+    refinedStr2 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr2)
+    refinedStr2 <- gsub("[[:punct:]]"," ", refinedStr2)
+    refinedStr2 <- gsub("[a-z]"," ",refinedStr2)
+    refinedStr2 <- gsub("[0-9]", " ", refinedStr2)
+    refinedStr2 <- gsub(" +", " ",refinedStr2)
+    refinedStr3 <- apiResult3
+    refinedStr3 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr3)
+    refinedStr3 <- gsub("[[:punct:]]"," ", refinedStr3)
+    refinedStr3 <- gsub("[a-z]"," ",refinedStr3)
+    refinedStr3 <- gsub("[0-9]", " ", refinedStr3)
+    refinedStr3 <- gsub(" +", " ",refinedStr3)
+    refinedStr4 <- apiResult4
+    refinedStr4 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr4)
+    refinedStr4 <- gsub("[[:punct:]]"," ", refinedStr4)
+    refinedStr4 <- gsub("[a-z]"," ",refinedStr4)
+    refinedStr4 <- gsub("[0-9]", " ", refinedStr4)
+    refinedStr4 <- gsub(" +", " ",refinedStr4)
+    refinedStr5 <- apiResult5
+    refinedStr5 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr5)
+    refinedStr5 <- gsub("[[:punct:]]"," ", refinedStr5)
+    refinedStr5 <- gsub("[a-z]"," ",refinedStr5)
+    refinedStr5 <- gsub("[0-9]", " ", refinedStr5)
+    refinedStr5 <- gsub(" +", " ",refinedStr5)
+    refinedStr6 <- apiResult6
+    refinedStr6 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr6)
+    refinedStr6 <- gsub("[[:punct:]]"," ", refinedStr6)
+    refinedStr6 <- gsub("[a-z]"," ",refinedStr6)
+    refinedStr6 <- gsub("[0-9]", " ", refinedStr6)
+    refinedStr6 <- gsub(" +", " ",refinedStr6)
+    refinedStr7 <- apiResult7
+    refinedStr7 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr7)
+    refinedStr7 <- gsub("[[:punct:]]"," ", refinedStr7)
+    refinedStr7 <- gsub("[a-z]"," ",refinedStr7)
+    refinedStr7 <- gsub("[0-9]", " ", refinedStr7)
+    refinedStr7 <- gsub(" +", " ",refinedStr7)
+    refinedStr8 <- apiResult8
+    refinedStr8 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr8)
+    refinedStr8 <- gsub("[[:punct:]]"," ", refinedStr8)
+    refinedStr8 <- gsub("[a-z]"," ",refinedStr8)
+    refinedStr8 <- gsub("[0-9]", " ", refinedStr8)
+    refinedStr8 <- gsub(" +", " ",refinedStr8)
+    refinedStr9 <- apiResult9
+    refinedStr9 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr9)
+    refinedStr9 <- gsub("[[:punct:]]"," ", refinedStr9)
+    refinedStr9 <- gsub("[a-z]"," ",refinedStr9)
+    refinedStr9 <- gsub("[0-9]", " ", refinedStr9)
+    refinedStr9 <- gsub(" +", " ",refinedStr9)
+    refinedStr10 <- apiResult10
+    refinedStr10 <- gsub("<(\\/?)(\\w +)*([^<>]*)>", " ", refinedStr10)
+    refinedStr10 <- gsub("[[:punct:]]"," ", refinedStr10)
+    refinedStr10 <- gsub("[a-z]"," ",refinedStr10)
+    refinedStr10 <- gsub("[0-9]", " ", refinedStr10)
+    refinedStr10 <- gsub(" +", " ",refinedStr10)
+    
+    #refinedStr
+    library(rJava)
+    library(KoNLP)
+    library(wordcloud2)
+    nouns1 <- extractNoun(refinedStr1)
+    nouns2 <- extractNoun(refinedStr2)
+    nouns3 <- extractNoun(refinedStr3)
+    nouns4 <- extractNoun(refinedStr4)
+    nouns5 <- extractNoun(refinedStr5)
+    nouns6 <- extractNoun(refinedStr6)
+    nouns7 <- extractNoun(refinedStr7)
+    nouns8 <- extractNoun(refinedStr8)
+    nouns9 <- extractNoun(refinedStr9)
+    nouns10 <- extractNoun(refinedStr10)
+    
+    total = c(nouns1, nouns2, nouns3, nouns4,nouns5, nouns6, nouns7, nouns8, nouns9, nouns10)
+    total = total[nchar(total) > 1]
+    excluNouns <- c('API','여행','곳인데요','^ㅎ','^ㅎ^ㅎ','공지','이번','오늘','코스','추천',
+                    '시간','사진','오랜만','들이','저희','기록','대부','안녕','해서','근처',
+                    '^ㅎ^ㅎ','^ㅋ^ㅋ^ㅋ^ㅋ^ㅋ','님의블로그','얼마','진짜','검색','가자며','때문','하루','고기국','계획하','으로',
+                    '^ㅋ^ㅋ^ㅋ','으로','우리','필수','블로그','덕분','나모나모에','^ㅋ','계획하','이야기','ㅠㅠ','모노하')
+    total <- total[!total %in% excluNouns]
+    wordTo<-sort(table(total), decreasing =T)[1:90]
+    return(wordTo)
+    }
+
+
             
             
             #####################웹사이트 구현과정!!!######################################
